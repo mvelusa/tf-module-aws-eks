@@ -10,7 +10,7 @@ locals {
 resource "aws_iam_role" "ms-cluster" {
   name = local.cluster_name
 
-    assume_role_policy = <<POLICY
+  assume_role_policy = <<POLICY
   {
     "Version": "2012-10-17",
     "Statement": [
@@ -36,9 +36,9 @@ resource "aws_iam_role_policy_attachment" "ms-cluster-AmazonEKSClusterPolicy" {
 # We define an egress rule that allows unrestricted outbound traffic.
 # It doesn't allow any inbound traffic, because there is no ingress rule defined.
 resource "aws_security_group" "ms-cluster" {
-  name   = local.cluster_name
+  name        = local.cluster_name
   description = "Cluster communication with worker nodes"
-  vpc_id = var.vpc_id
+  vpc_id      = var.vpc_id
 
   egress {
     from_port   = 0
